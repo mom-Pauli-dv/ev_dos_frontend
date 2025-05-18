@@ -1,0 +1,158 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'open Sans', sans-serif;
+}
+
+h3 {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.promedio-card {
+    max-width: 350px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border: 2px solid #0e3a7c; /* Azul más oscuro */
+    margin-bottom: 1.5rem;
+}
+
+.promedio-header {
+    font-size: 1.1rem;
+    font-weight: 500;
+    background: #0e3a7c; /* Azul más oscuro */
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+    padding: 0.7rem 1rem;
+}
+
+.promedio-body {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #2a5494;
+    background: #e9f2ff;
+    border-radius: 0 0 10px 10px;
+    padding: 1rem 0;
+}
+
+.form-container {
+    max-width: 350px;
+    width: 100%;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border: 2px solid #0e3a7c;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.form-control {
+    border-radius: 6px;
+    border: 1.5px solid #b6d4fe;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: #0e3a7c; /* Azul más oscuro */
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+    margin-top: 0.7rem;
+}
+
+.btn-primary:hover {
+    background: #093366; /* Un azul aún más oscuro para hover */
+}
+
+.responsive-table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+#studentsTable {
+    width: 100%;
+    min-width: 350px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+#studentsTable th, #studentsTable td {
+    min-width: 130px; /* Aumenta el ancho mínimo para que quepa 'Calificación' */
+    word-break: normal; /* No cortar palabras por defecto */
+    white-space: normal;
+    font-size: 1rem;
+    padding: 0.7em 0.5em;
+}
+
+#studentsTable th {
+    background: #e9f2ff;
+    color: #0e3a7c; /* Azul más oscuro */
+    font-weight: 600;
+    border-bottom: 2px solid #b6d4fe;
+}
+
+#studentsTable td {
+    background: #fff;
+    color: #222;
+}
+
+@media (max-width: 600px) {
+    .promedio-card,
+    .form-container {
+        max-width: 100%;
+        padding: 1rem 0.5rem;
+    }
+    #studentsTable th, #studentsTable td {
+        font-size: 0.93em;
+        min-width: 110px; /* Mantiene suficiente espacio en móviles */
+        padding: 0.4em 0.2em;
+    }
+    .responsive-table-container {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.error-message {
+    display: none;
+    align-items: center;
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin-top: 4px;
+    font-size: 0.95em;
+    min-height: 1.2em;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    gap: 6px;
+}
+
+.error-message:not(:empty) {
+    display: flex;
+}
+
+.error-message::before {
+    display: none;
+}
+
+.error-message:not(:empty)::before {
+    content: '\26A0'; /* Unicode advertencia */
+    display: inline-block;
+    font-size: 1.1em;
+    margin-right: 4px;
+}
+
