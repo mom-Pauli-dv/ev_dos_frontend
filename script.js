@@ -17,7 +17,7 @@ const firstName = document.getElementById("name").value.trim();
 const lastName = document.getElementById("lastName").value.trim();
 const grade = document.getElementById("grade").value.trim(); // Obtener como cadena
 
-let isValid = true; // Variable para controlar la validez del formulario
+let isValid = true; // Variable para controlar la validez
 
 // Validación del Nombre
 if (!firstName) {
@@ -61,7 +61,7 @@ if (!isValid) {
 const student = {
     firstName: firstName,
     lastName: lastName,
-    grade: parseFloat(grade) // Convertir a número
+    grade: parseFloat(grade) 
 };
 
 students.push(student);
