@@ -18,7 +18,7 @@ Este ejercicio es una aplicación web que permite registrar estudiantes, ingresa
 
 ## Autor
 
-- [Tu Nombre]
+- Paulina Gallardo Garcia
 
 ## Licencia
 
