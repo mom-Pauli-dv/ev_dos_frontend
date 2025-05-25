@@ -100,7 +100,7 @@ function activarEdicionEnFila(index) {
   const student = students[index];
   if (!row) return;
 
-  // Reemplazar celdas por inputs
+  //Cambia fila a campos de edición
   row.innerHTML = `
     <td><input type="text" class="form-control form-control-sm" value="${student.firstName}" id="editName${index}"></td>
     <td><input type="text" class="form-control form-control-sm" value="${student.lastName}" id="editLastName${index}"></td>
