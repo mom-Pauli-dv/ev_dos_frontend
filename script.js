@@ -1,3 +1,4 @@
+//script principal para la gestión de estudiantes y cálculo de promedios
 const students = [];
 const table = document.getElementById("studentsTable");
 const tableBody = table.querySelector("tbody");

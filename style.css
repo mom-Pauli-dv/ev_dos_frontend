@@ -10,6 +10,9 @@ body {
 
 .promedio-header {
     font-size: large;
+    background-color: #003366 !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
 
 .promedio-body {
@@ -55,4 +58,19 @@ body {
         margin-bottom: 1rem;
         max-width: 100%;
     }
+}
+.table {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Azul oscuro personalizado */
+.azul-oscuro {
+    background-color: #003366 !important;
+    color: #fff !important;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: background 0.2s;
+}
+.azul-oscuro:hover, .azul-oscuro:focus {
+    background-color: #001f4d !important;
 }
