@@ -3,82 +3,145 @@ const table = document.getElementById("studentsTable");
 const tableBody = table.querySelector("tbody");
 const form = document.getElementById("studentForm");
 const averageDiv = document.getElementById("average");
-//obteniendo ref. a los elem <span> que estan en Index.html
-const nameError = document.getElementById("name-error");
-const lastNameError = document.getElementById("lastName-error");
-const gradeError = document.getElementById("grade-error");
+
+let editIndex = -1;
 
 document.getElementById("studentForm").addEventListener("submit", function(e) {
-  e.preventDefault(); 
-
   e.preventDefault();
 
-const firstName = document.getElementById("name").value.trim();
-const lastName = document.getElementById("lastName").value.trim();
-const grade = document.getElementById("grade").value.trim(); // Obtener como cadena
+  const firstName = document.getElementById("name").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const grade = document.getElementById("grade").value;
 
-let isValid = true; // Variable para controlar la validez
+  const nameError = document.getElementById("name-error");
+  const lastNameError = document.getElementById("lastName-error");
+  const gradeError = document.getElementById("grade-error");
 
-// Validación del Nombre
-if (!firstName) {
+  let isValid = true;
+
+  // Validación del Nombre
+  if (!firstName) {
     nameError.textContent = "Por favor, complete el campo Nombre.";
     isValid = false;
-} else if (/\d/.test(firstName)) {
-    nameError.textContent = "El nombre no puede contener números.";
+  } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/.test(firstName)) {
+    nameError.textContent = "El nombre solo puede contener letras y espacios.";
     isValid = false;
-} else {
-    nameError.textContent = ""; // Limpiar el mensaje
-}
+  } else {
+    nameError.textContent = "";
+  }
 
-// Validación del Apellido
-if (!lastName) {
+  // Validación del Apellido
+  if (!lastName) {
     lastNameError.textContent = "Por favor, complete el campo Apellido.";
     isValid = false;
-} else if (/\d/.test(lastName)) {
-    lastNameError.textContent = "El apellido no puede contener números.";
+  } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/.test(lastName)) {
+    lastNameError.textContent = "El apellido solo puede contener letras y espacios.";
     isValid = false;
-} else {
-    lastNameError.textContent = ""; // Limpiar el mensaje
-}
+  } else {
+    lastNameError.textContent = "";
+  }
 
-// Validación de la Calificación
-if (!grade) {
+  // Validación de la Calificación
+  if (!grade) {
     gradeError.textContent = "Por favor, ingrese una calificación.";
     isValid = false;
-} else if (isNaN(parseFloat(grade)) || parseFloat(grade) < 1 || parseFloat(grade) > 7) {
+  } else if (isNaN(parseFloat(grade)) || parseFloat(grade) < 1 || parseFloat(grade) > 7) {
     gradeError.textContent = "Por favor, ingrese una calificación entre 1.0 y 7.0.";
     isValid = false;
-} else {
-    gradeError.textContent = ""; // Limpiar el mensaje
-}
+  } else {
+    gradeError.textContent = "";
+  }
 
-// Si hay errores, detener el envío
-if (!isValid) {
-    return;
-}
+  if (!isValid) return;
 
-// Si la validación es exitosa, continuar
-const student = {
+  const student = {
     firstName: firstName,
     lastName: lastName,
-    grade: parseFloat(grade) 
-};
+    grade: parseFloat(grade)
+  };
 
-students.push(student);
-addStudentToTable(student, students.length - 1);
-calcularPromedio();
-this.reset();
-  
+  if(editIndex === -1) {
+    students.push(student);
+  }
+  else {
+    students[editIndex] = student;
+    editIndex = -1;
+  }
+
+  actualizarTabla();
+  calcularPromedio();
+
+  this.reset();
+  nameError.textContent = "";
+  lastNameError.textContent = "";
+  gradeError.textContent = "";
 });
 
 tableBody.addEventListener("click", function (e) {
   if (e.target.classList.contains("eliminar-btn")) {
     const index = parseInt(e.target.getAttribute("data-index"));
-
     students.splice(index, 1);
-    
     actualizarTabla();
     calcularPromedio();
+  }
+  else if (e.target.classList.contains("editar-btn")) {
+    const index = parseInt(e.target.getAttribute("data-index"));
+    editarEstudiante(index);
+  }
+  else if (e.target.classList.contains("actualizar-btn")) {
+    const index = parseInt(e.target.getAttribute("data-index"));
+    activarEdicionEnFila(index);
+  }
+});
+
+function activarEdicionEnFila(index) {
+  const row = tableBody.children[index];
+  const student = students[index];
+  if (!row) return;
+
+  // Reemplazar celdas por inputs
+  row.innerHTML = `
+    <td><input type="text" class="form-control form-control-sm" value="${student.firstName}" id="editName${index}"></td>
+    <td><input type="text" class="form-control form-control-sm" value="${student.lastName}" id="editLastName${index}"></td>
+    <td><input type="number" class="form-control form-control-sm" value="${student.grade}" min="1" max="7" step="0.1" id="editGrade${index}"></td>
+    <td class="d-flex gap-1 justify-content-center align-items-center">
+      <button class="btn btn-success btn-sm guardar-btn" data-index="${index}">Guardar</button>
+      <button class="btn btn-secondary btn-sm cancelar-btn" data-index="${index}">Cancelar</button>
+    </td>
+  `;
+}
+
+tableBody.addEventListener("click", function (e) {
+  if (e.target.classList.contains("guardar-btn")) {
+    const index = parseInt(e.target.getAttribute("data-index"));
+    const nombre = document.getElementById(`editName${index}`).value.trim();
+    const apellido = document.getElementById(`editLastName${index}`).value.trim();
+    const nota = parseFloat(document.getElementById(`editGrade${index}`).value);
+
+    // Validaciones detalladas para edición en la tabla
+    if (!nombre) {
+      alert("Por favor, complete el campo Nombre.");
+      return;
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/.test(nombre)) {
+      alert("El nombre solo puede contener letras y espacios.");
+      return;
+    }
+    if (!apellido) {
+      alert("Por favor, complete el campo Apellido.");
+      return;
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/.test(apellido)) {
+      alert("El apellido solo puede contener letras y espacios.");
+      return;
+    }
+    if (isNaN(nota) || nota < 1 || nota > 7) {
+      alert("Por favor, ingrese una calificación entre 1.0 y 7.0.");
+      return;
+    }
+    students[index] = { firstName: nombre, lastName: apellido, grade: nota };
+    actualizarTabla();
+    calcularPromedio();
+  } else if (e.target.classList.contains("cancelar-btn")) {
+    actualizarTabla();
   }
 });
 
@@ -88,9 +151,23 @@ function addStudentToTable(student, index) {
     <td>${student.firstName}</td>
     <td>${student.lastName}</td>
     <td>${student.grade}</td>
+    <td class="d-flex gap-1 justify-content-center align-items-center">
+      <button class="btn btn-success btn-sm actualizar-btn align-middle" data-index="${index}">Actualizar</button>
+      <button class="btn btn-primary btn-sm editar-btn align-middle" data-index="${index}">Editar</button>
+      <button class="btn btn-danger btn-sm eliminar-btn align-middle" data-index="${index}">Eliminar</button>
     </td>
   `;
   tableBody.appendChild(row);
+}
+
+function editarEstudiante(index) {
+    const student=students[index];
+    
+    document.getElementById("name").value = student.firstName;
+    document.getElementById("lastName").value = student.lastName;
+    document.getElementById("grade").value = student.grade;
+
+    editIndex = index;
 }
 
 function calcularPromedio() {
