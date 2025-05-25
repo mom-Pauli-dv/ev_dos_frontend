@@ -1,21 +1,25 @@
+# Seguimiento de Calificaciones de Estudiantes
 
-# ev_dos_frontend
+Este ejercicio es una aplicación web que permite registrar estudiantes, ingresar sus calificaciones, editar y eliminar registros, y calcular el promedio de notas en tiempo real.
 
-## Registro de Notas de Estudiantes
+## Características
 
-### ¿Qué es?
+- Agregar, actualizar, editar y eliminar estudiantes.
+- Cálculo automático y visualización del promedio de calificaciones.
+- Validación de datos y mensajes de error en español.
+- Interfaz responsiva y moderna con Bootstrap.
+- Diseño visual basado en la imagen de referencia entregada.
 
-Es una aplicación web diseñada para registrar y gestionar las calificaciones de estudiantes.
+## Tecnologías utilizadas
 
-### ¿Para qué sirve?
+- HTML5
+- CSS3 (con Bootstrap 5)
+- JavaScript
 
-Permite a los usuarios ingresar las notas de los estudiantes y calcula automáticamente el promedio general del curso.
+## Autor
 
-### ¿Cómo funciona?
+- [Tu Nombre]
 
-1. El usuario ingresa el nombre, apellido y calificación de un estudiante en un formulario.
-2. La aplicación valida los datos ingresados (nombre y apellido no deben contener números, la nota debe estar entre 1.0 y 7.0).
-3. Si los datos son válidos, se agrega el estudiante a una tabla y se actualiza el promedio general.
-4. El promedio se muestra en la página.
+## Licencia
 
-*Cumple con los requisitos funcionales básicos de registro, visualización de datos y cálculo del promedio.*
+Este proyecto es solo para fines educativos.
