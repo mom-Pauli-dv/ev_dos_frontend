@@ -1,177 +1,58 @@
-/* Estilos generales de la página */
 body {
-    background-color: #f8f9fa;
-    font-family: 'open Sans', sans-serif;
+    background-color: rgb(243, 240, 240);
 }
 
-/* Título principal */
-h3 {
-    font-weight: bold;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-}
-
-/* Tarjeta de promedio (cuadro superior) */
-.promedio-card {
-    max-width: 350px;
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    border: 2px solid #0e3a7c; /* Azul más oscuro */
-    margin-bottom: 1.5rem;
-}
-
-/* Encabezado de la tarjeta de promedio */
-.promedio-header {
-    font-size: 1.1rem;
-    font-weight: 500;
-    background: #0e3a7c; /* Azul más oscuro */
-    color: #fff;
-    border-radius: 10px 10px 0 0;
-    padding: 0.7rem 1rem;
-}
-
-/* Cuerpo de la tarjeta de promedio (donde aparece el resultado) */
-.promedio-body {
-    font-size: 2.2rem;
-    font-weight: bold;
-    color: #2a5494;
-    background: #e9f2ff;
-    border-radius: 0 0 10px 10px;
-    padding: 1rem 0;
-}
-
-/* Contenedor del formulario (cuadro inferior) */
+.promedio-card,
 .form-container {
-    max-width: 350px;
-    width: 100%;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    border: 2px solid #0e3a7c;
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    width: 60% !important;
+    min-width: 280px;
 }
 
-/* Etiquetas del formulario */
-.form-group label {
-    font-weight: 500;
-    margin-bottom: 0.3rem;
+.promedio-header {
+    font-size: large;
 }
 
-/* Entradas del formulario */
-.form-control {
-    border-radius: 6px;
-    border: 1.5px solid #b6d4fe;
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
+.promedio-body {
+    font-size: x-large;
 }
 
-/* Botón principal del formulario */
-.btn-primary {
-    background: #0e3a7c; /* Azul más oscuro */
-    border: none;
-    border-radius: 6px;
-    font-weight: 500;
-    padding: 0.5rem 1.5rem;
-    margin-top: 0.7rem;
-}
-
-/* Hover del botón principal */
-.btn-primary:hover {
-    background: #093366; /* Un azul aún más oscuro para hover */
-}
-
-/* Contenedor responsivo de la tabla */
 .responsive-table-container {
     width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
 }
 
-/* Tabla de estudiantes */
-#studentsTable {
-    width: 100%;
-    min-width: 350px;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+#studentsTable th.w-50, #studentsTable td.w-50 {
+    width: 30% !important;
+    min-width: 120px;
 }
 
-/* Encabezado y celdas de la tabla */
+#studentsTable th.w-25, #studentsTable td.w-25 {
+    width: 20% !important;
+    min-width: 90px;
+}
+
 #studentsTable th, #studentsTable td {
-    min-width: 130px; /* Aumenta el ancho mínimo para que quepa 'Calificación' */
-    word-break: normal; /* No cortar palabras por defecto */
-    white-space: normal;
-    font-size: 1rem;
-    padding: 0.7em 0.5em;
+    white-space: nowrap;
 }
 
-/* Encabezado de la tabla */
-#studentsTable th {
-    background: #e9f2ff;
-    color: #0e3a7c; /* Azul más oscuro */
-    font-weight: 600;
-    border-bottom: 2px solid #b6d4fe;
-}
-
-/* Celdas de la tabla */
-#studentsTable td {
-    background: #fff;
-    color: #222;
-}
-
-/* Estilos responsivos para móviles */
 @media (max-width: 600px) {
     .promedio-card,
     .form-container {
-        max-width: 100%;
+        max-width: 100% !important;
+        width: 100% !important;
         padding: 1rem 0.5rem;
     }
     #studentsTable th, #studentsTable td {
         font-size: 0.93em;
-        min-width: 110px; /* Mantiene suficiente espacio en móviles */
+        min-width: 90px;
         padding: 0.4em 0.2em;
     }
     .responsive-table-container {
         margin-top: 1rem;
         margin-bottom: 1rem;
+        max-width: 100%;
     }
-}
-
-/* Mensajes de error del formulario */
-.error-message {
-    display: none;
-    align-items: center;
-    background: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffeeba;
-    border-radius: 4px;
-    padding: 4px 8px;
-    margin-top: 4px;
-    font-size: 0.95em;
-    min-height: 1.2em;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
-    gap: 6px;
-}
-
-/* Mostrar mensaje de error si no está vacío */
-.error-message:not(:empty) {
-    display: flex;
-}
-
-/* Icono de advertencia en mensaje de error */
-.error-message::before {
-    display: none;
-}
-
-/* Icono de advertencia visible si hay mensaje */
-.error-message:not(:empty)::before {
-    content: '\26A0'; /* Unicode advertencia */
-    display: inline-block;
-    font-size: 1.1em;
-    margin-right: 4px;
 }
