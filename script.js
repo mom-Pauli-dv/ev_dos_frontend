@@ -13,7 +13,7 @@ document.getElementById("studentForm").addEventListener("submit", function(e) {
   const firstName = document.getElementById("name").value.trim();
   const lastName = document.getElementById("lastName").value.trim();
   const grade = document.getElementById("grade").value;
-
+//Referencias a los mensajes de error
   const nameError = document.getElementById("name-error");
   const lastNameError = document.getElementById("lastName-error");
   const gradeError = document.getElementById("grade-error");
@@ -52,15 +52,15 @@ document.getElementById("studentForm").addEventListener("submit", function(e) {
   } else {
     gradeError.textContent = "";
   }
-
+//si no es valido detener el proceso
   if (!isValid) return;
-
+//crea un objeto estudiante c
   const student = {
     firstName: firstName,
     lastName: lastName,
     grade: parseFloat(grade)
   };
-
+//agregar o actualizar estudiante
   if(editIndex === -1) {
     students.push(student);
   }
@@ -68,11 +68,12 @@ document.getElementById("studentForm").addEventListener("submit", function(e) {
     students[editIndex] = student;
     editIndex = -1;
   }
-
+//actualizar tabla y promedio
   actualizarTabla();
   calcularPromedio();
-
+// reiniciar el formulario
   this.reset();
+//limpiar mensajes de error
   nameError.textContent = "";
   lastNameError.textContent = "";
   gradeError.textContent = "";
@@ -189,4 +190,46 @@ function actualizarTabla() {
   students.forEach((student, index) => {
     addStudentToTable(student, index);
   });
+}
+// ...código existente...
+
+// Elementos para las estadísticas
+const totalEstudiantesDiv = document.getElementById("total-estudiantes");
+const cantidadAprobadosDiv = document.getElementById("cantidad-aprobados");
+const cantidadReprobadosDiv = document.getElementById("cantidad-reprobados");
+
+// Función para actualizar las estadísticas
+function actualizarEstadisticas() {
+    const totalEstudiantes = students.length;
+    const cantidadAprobados = students.filter(student => student.grade >= 4.0).length;
+    const cantidadReprobados = students.filter(student => student.grade < 4.0).length;
+
+    // Actualizar el DOM
+    totalEstudiantesDiv.textContent = totalEstudiantes;
+    cantidadAprobadosDiv.textContent = cantidadAprobados;
+    cantidadReprobadosDiv.textContent = cantidadReprobados;
+}
+
+// Modificar las funciones existentes para incluir la actualización de estadísticas
+function calcularPromedio() {
+    if (students.length === 0) {
+        averageDiv.textContent = "0.00";
+        return;
+    }
+
+    const suma = students.reduce((acc, student) => acc + student.grade, 0);
+    const promedio = suma / students.length;
+
+    averageDiv.textContent = `${promedio.toFixed(2)}`;
+    actualizarEstadisticas(); // Llamar a la función de estadísticas
+}
+
+function actualizarTabla() {
+    tableBody.innerHTML = "";
+
+    students.forEach((student, index) => {
+        addStudentToTable(student, index);
+    });
+
+    actualizarEstadisticas(); // Llamar a la función de estadísticas
 }

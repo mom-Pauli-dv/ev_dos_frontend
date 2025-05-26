@@ -73,4 +73,34 @@ body {
 .azul-oscuro:hover, .azul-oscuro:focus {
     background-color: #001f4d !important;
 }
-                    
+/* Estilos para el contenedor de estadísticas */
+.promedio-card {
+    width: 60% !important;
+    min-width: 280px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.promedio-header {
+    font-size: large;
+    background-color: #003366 !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.promedio-body {
+    font-size: x-large;
+    color: #333;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 600px) {
+    .promedio-card {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 1rem 0.5rem;
+    }
+    .promedio-body {
+        font-size: large;
+    }
+}            
